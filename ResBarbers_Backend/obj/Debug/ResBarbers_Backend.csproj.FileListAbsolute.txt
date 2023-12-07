@@ -1,0 +1,7 @@
+C:\Users\tokel\Desktop\Projects\Profile\ResBarbers_Backend\ResBarbers_Backend\bin\ResBarbers_Backend.dll.config
+C:\Users\tokel\Desktop\Projects\Profile\ResBarbers_Backend\ResBarbers_Backend\bin\ResBarbers_Backend.dll
+C:\Users\tokel\Desktop\Projects\Profile\ResBarbers_Backend\ResBarbers_Backend\bin\ResBarbers_Backend.pdb
+C:\Users\tokel\Desktop\Projects\Profile\ResBarbers_Backend\ResBarbers_Backend\obj\Debug\ResBarbers_Backend.csproj.AssemblyReference.cache
+C:\Users\tokel\Desktop\Projects\Profile\ResBarbers_Backend\ResBarbers_Backend\obj\Debug\ResBarbers_Backend.csproj.CoreCompileInputs.cache
+C:\Users\tokel\Desktop\Projects\Profile\ResBarbers_Backend\ResBarbers_Backend\obj\Debug\ResBarbers_Backend.dll
+C:\Users\tokel\Desktop\Projects\Profile\ResBarbers_Backend\ResBarbers_Backend\obj\Debug\ResBarbers_Backend.pdb
