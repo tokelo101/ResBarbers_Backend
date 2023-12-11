@@ -14,14 +14,56 @@ namespace ResBarbers_Backend
     {
         MainDataClassesDataContext db = new MainDataClassesDataContext();
 
-        public bool RegisterUser(USER_ barber)
+        public bool RegisterUser(USER_ user)
         {
-            throw new NotImplementedException();
+            //var us = new USER_
+            //{
+            //    FirstName = user.FirstName,
+            //    LastName = user.LastName,
+            //    UserDOB = user.UserDOB,
+            //    Email = user.Email,
+            //    Phone = user.Phone,
+            //    University = user.University,
+            //    Campus = user.Campus,
+            //    Province = user.Province,
+            //    City = user.City,
+            //    ResidenceName = user.ResidenceName,
+            //    Addressline1 = user.Addressline1,
+            //    Addressline2 = user.Addressline2,
+            //    Addressline3 = user.Addressline3,
+            //    UserType = user.UserType,
+
+            //    UserPicture = user.UserPicture,
+            //    UserName = user.UserName,
+            //    About = user.About,
+            //    PassPhrase = user.PassPhrase
+
+            //};
+
+            db.USER_s.InsertOnSubmit(user);
+
+            if(user!=null)
+            {
+                db.SubmitChanges();
+                return true;
+            }else{
+                return false;
+            }
         }
 
-        public bool Login(string email, string password)
+        public int Login(string email, string password)
         {
-            throw new NotImplementedException();
+            var user = (from u in db.USER_s where u.Email.Equals(email) && u.PassPhrase.Equals(password) select u).FirstOrDefault();
+
+            if (user != null)
+            {
+                return user.UserID;
+            }
+            else
+            {
+                return 0;
+            }
+
         }
         
     }

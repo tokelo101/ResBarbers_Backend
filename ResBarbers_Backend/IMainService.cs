@@ -13,7 +13,9 @@ namespace ResBarbers_Backend
     public interface IMainService
     {
         [OperationContract]
-        bool RegisterUser(USER_ barber);
-        bool Login(string email, string password);
+        bool RegisterUser(USER_ user);
+
+        [OperationContract]
+        int Login(string email, string password);
     }
 }
