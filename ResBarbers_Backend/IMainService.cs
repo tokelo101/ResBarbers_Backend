@@ -17,5 +17,8 @@ namespace ResBarbers_Backend
 
         [OperationContract]
         int Login(string email, string password);
+
+        [OperationContract]
+        string GetUserType(int UserID);
     }
 }

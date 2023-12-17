@@ -65,6 +65,19 @@ namespace ResBarbers_Backend
             }
 
         }
-        
+
+        public string GetUserType(int UserID)
+        {
+            var user = (from u in db.USER_s where u.UserID.Equals(UserID) select u).FirstOrDefault();
+
+            if (user != null)
+            {
+                return user.UserType;
+            }
+            else{
+                return null;
+            }
+
+        }
     }
 }
