@@ -132,6 +132,33 @@ namespace ResBarbers_Backend
             }
             
         }
-        
+
+        public List<MenuItem> GetBarberHairstyles(int BarberID)
+        {
+            dynamic hairstyles = (from m in db.MenuItems where m.BarberID.Equals(BarberID) select m).DefaultIfEmpty();
+
+            if (hairstyles != null)
+            {
+                List<MenuItem> barberhairstyles = new List<MenuItem>();
+                foreach (MenuItem h in hairstyles)
+                {
+                    var newhairstyle = new MenuItem
+                    {
+                        StyleID = h.StyleID,
+                        BarberID = h.BarberID,
+                        StyleName = h.StyleName,
+                        StyleDescription = h.StyleDescription,
+                        StylePrice = h.StylePrice,
+                        StyleImage = h.StyleImage
+                    };
+                    barberhairstyles.Add(newhairstyle);
+                }
+                return barberhairstyles;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
