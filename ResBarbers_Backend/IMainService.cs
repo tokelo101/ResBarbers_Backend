@@ -20,5 +20,14 @@ namespace ResBarbers_Backend
 
         [OperationContract]
         string GetUserType(int UserID);
+
+        [OperationContract]
+        bool AddHairstyle(MenuItem StyleID);
+
+        [OperationContract]
+        bool RemoveHairstyle(int StyleID);
+
+        [OperationContract]
+        bool EditHairstyle(int StyleID, MenuItem Hairstyle);
     }
 }

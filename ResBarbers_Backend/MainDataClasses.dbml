@@ -22,25 +22,12 @@
       <Column Name="About" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="PassPhrase" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="UserType" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Association Name="USER__MenuItem" Member="MenuItems" ThisKey="UserID" OtherKey="BarberID" Type="MenuItem" />
       <Association Name="USER__Appointment" Member="Appointments" ThisKey="UserID" OtherKey="BarberID" Type="Appointment" />
       <Association Name="USER__Appointment1" Member="Appointments1" ThisKey="UserID" OtherKey="ClientID" Type="Appointment" />
       <Association Name="USER__ClientBarberHistory" Member="ClientBarberHistories" ThisKey="UserID" OtherKey="BarberID" Type="ClientBarberHistory" />
       <Association Name="USER__ClientBarberHistory1" Member="ClientBarberHistories1" ThisKey="UserID" OtherKey="ClientID" Type="ClientBarberHistory" />
       <Association Name="USER__Review" Member="Reviews" ThisKey="UserID" OtherKey="BarberID" Type="Review" />
       <Association Name="USER__Review1" Member="Reviews1" ThisKey="UserID" OtherKey="ClientID" Type="Review" />
-    </Type>
-  </Table>
-  <Table Name="dbo.MenuItem" Member="MenuItems">
-    <Type Name="MenuItem">
-      <Column Name="StyleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="BarberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StyleName" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="StylePrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="StyleDescription" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="StyleImage" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Association Name="MenuItem_Appointment" Member="Appointments" ThisKey="StyleID" OtherKey="StyleID" Type="Appointment" />
-      <Association Name="USER__MenuItem" Member="USER_" ThisKey="BarberID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Appointment" Member="Appointments">
@@ -55,7 +42,6 @@
       <Association Name="Appointment_ClientBarberHistory" Member="ClientBarberHistories" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="ClientBarberHistory" />
       <Association Name="USER__Appointment" Member="USER_" ThisKey="BarberID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
       <Association Name="USER__Appointment1" Member="USER_1" ThisKey="ClientID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
-      <Association Name="MenuItem_Appointment" Member="MenuItem" ThisKey="StyleID" OtherKey="StyleID" Type="MenuItem" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ClientBarberHistory" Member="ClientBarberHistories">
@@ -95,6 +81,16 @@
       <Association Name="Review_ClientBarberHistory" Member="ClientBarberHistories" ThisKey="RevID" OtherKey="RevID" Type="ClientBarberHistory" />
       <Association Name="USER__Review" Member="USER_" ThisKey="BarberID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
       <Association Name="USER__Review1" Member="USER_1" ThisKey="ClientID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MenuItem" Member="MenuItems">
+    <Type Name="MenuItem">
+      <Column Name="StyleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BarberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StyleName" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="StylePrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="StyleDescription" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="StyleImage" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

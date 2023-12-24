@@ -79,5 +79,59 @@ namespace ResBarbers_Backend
             }
 
         }
+
+        public bool AddHairstyle(MenuItem Hairstyle)
+        {
+            
+            db.MenuItems.InsertOnSubmit(Hairstyle);
+            
+            if (Hairstyle != null)
+            {
+                db.SubmitChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool RemoveHairstyle(int StyleID)
+        {
+            var hairstyle = (from h in db.MenuItems where h.StyleID.Equals(StyleID) select h).FirstOrDefault();
+            if (hairstyle != null)
+            {
+                db.MenuItems.DeleteOnSubmit(hairstyle);
+                db.SubmitChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool EditHairstyle(int StyleID, MenuItem Hairstyle)
+        {
+            var hairstyle = (from h in db.MenuItems where h.StyleID.Equals(StyleID) select h).FirstOrDefault();
+
+            if (hairstyle != null)
+            {
+                hairstyle.StyleID = Hairstyle.StyleID;
+                hairstyle.BarberID = Hairstyle.BarberID;
+                hairstyle.StyleName = Hairstyle.StyleName;
+                hairstyle.StylePrice = Hairstyle.StylePrice;
+                hairstyle.StyleDescription = Hairstyle.StyleDescription;
+                hairstyle.StyleImage = Hairstyle.StyleImage;
+
+                db.SubmitChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+        
     }
 }
