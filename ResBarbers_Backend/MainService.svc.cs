@@ -159,5 +159,27 @@ namespace ResBarbers_Backend
                 return null;
             }
         }
+
+        public MenuItem GetHairstyle(int StyleID)
+        {
+            var hairstyle = (from m in db.MenuItems where m.BarberID.Equals(StyleID) select m).FirstOrDefault();
+
+            if (hairstyle != null)
+            {
+                var retrievedHairstyle = new MenuItem
+                {
+                    StyleName = hairstyle.StyleName,
+                    StyleDescription = hairstyle.StyleDescription,
+                    StylePrice = hairstyle.StylePrice,
+                    StyleImage = hairstyle.StyleImage
+                };
+
+                return retrievedHairstyle;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

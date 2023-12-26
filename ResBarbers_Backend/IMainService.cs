@@ -31,6 +31,9 @@ namespace ResBarbers_Backend
         bool EditHairstyle(int StyleID, MenuItem Hairstyle);
 
         [OperationContract]
+        MenuItem GetHairstyle(int StyleID);
+
+        [OperationContract]
         List<MenuItem> GetBarberHairstyles(int BarberID);
     }
 }
