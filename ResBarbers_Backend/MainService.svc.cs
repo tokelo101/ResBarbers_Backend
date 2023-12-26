@@ -116,8 +116,7 @@ namespace ResBarbers_Backend
 
             if (hairstyle != null)
             {
-                hairstyle.StyleID = Hairstyle.StyleID;
-                hairstyle.BarberID = Hairstyle.BarberID;
+
                 hairstyle.StyleName = Hairstyle.StyleName;
                 hairstyle.StylePrice = Hairstyle.StylePrice;
                 hairstyle.StyleDescription = Hairstyle.StyleDescription;
