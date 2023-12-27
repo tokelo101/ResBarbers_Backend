@@ -233,5 +233,33 @@ namespace ResBarbers_Backend
                 return null;
             }
         }
+
+        public List<MenuItem> GetAllHairstyles()
+        {
+            IEnumerable<dynamic> hairstyles = (from m in db.MenuItems select m);
+
+            if (!hairstyles.Any())
+            {
+                return null;
+            }
+            else
+            {
+                List<MenuItem> barberhairstyles = new List<MenuItem>();
+                foreach (MenuItem h in hairstyles)
+                {
+                    var newhairstyle = new MenuItem
+                    {
+                        StyleID = h.StyleID,
+                        BarberID = h.BarberID,
+                        StyleName = h.StyleName,
+                        StyleDescription = h.StyleDescription,
+                        StylePrice = h.StylePrice,
+                        StyleImage = h.StyleImage
+                    };
+                    barberhairstyles.Add(newhairstyle);
+                }
+                return barberhairstyles;
+            }
+        }
     }
 }
