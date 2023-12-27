@@ -216,6 +216,7 @@ namespace ResBarbers_Backend
                 {
                     USER_ newUser = new USER_
                     {
+                        UserID = u.UserID,
                         UserName = u.UserName,
                         Gender = u.Gender,
                         University = u.University,
