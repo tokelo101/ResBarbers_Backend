@@ -134,9 +134,13 @@ namespace ResBarbers_Backend
 
         public List<MenuItem> GetBarberHairstyles(int BarberID)
         {
-            dynamic hairstyles = (from m in db.MenuItems where m.BarberID.Equals(BarberID) select m).DefaultIfEmpty();
+            IEnumerable<dynamic> hairstyles = (from m in db.MenuItems where m.BarberID.Equals(BarberID) select m);
 
-            if (hairstyles != null)
+            if (!hairstyles.Any())
+            {
+                return null;
+            }
+            else
             {
                 List<MenuItem> barberhairstyles = new List<MenuItem>();
                 foreach (MenuItem h in hairstyles)
@@ -154,15 +158,11 @@ namespace ResBarbers_Backend
                 }
                 return barberhairstyles;
             }
-            else
-            {
-                return null;
-            }
         }
 
         public MenuItem GetHairstyle(int StyleID)
         {
-            var hairstyle = (from m in db.MenuItems where m.BarberID.Equals(StyleID) select m).FirstOrDefault();
+            var hairstyle = (from m in db.MenuItems where m.StyleID.Equals(StyleID) select m).FirstOrDefault();
 
             if (hairstyle != null)
             {
