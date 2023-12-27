@@ -181,5 +181,57 @@ namespace ResBarbers_Backend
                 return null;
             }
         }
+
+        public USER_ GetUser(int UserID)
+        {
+            var user = (from u in db.USER_s where u.UserID.Equals(UserID) select u).FirstOrDefault();
+
+            if (user != null)
+            {
+                USER_ returnUser = new USER_
+                {
+                    UserName = user.UserName,
+                    Gender = user.Gender,
+                    University = user.University,
+                    Campus = user.Campus,
+                    About = user.About,
+                    UserPicture = user.UserPicture
+                };
+                return returnUser;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<USER_> GetUsers(string UserType)
+        {
+            IEnumerable<dynamic> users = (from u in db.USER_s where u.UserType.Equals(UserType) select u).DefaultIfEmpty();
+
+            if (users.Any())
+            {
+                List<USER_> returnUsers = new List<USER_>();
+                foreach(USER_ u in users)
+                {
+                    USER_ newUser = new USER_
+                    {
+                        UserName = u.UserName,
+                        Gender = u.Gender,
+                        University = u.University,
+                        Campus = u.Campus,
+                        About = u.About,
+                        UserPicture = u.UserPicture
+                    };
+                    returnUsers.Add(newUser);
+                }
+                
+                return returnUsers;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

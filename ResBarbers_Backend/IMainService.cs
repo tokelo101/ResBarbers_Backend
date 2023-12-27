@@ -35,5 +35,11 @@ namespace ResBarbers_Backend
 
         [OperationContract]
         List<MenuItem> GetBarberHairstyles(int BarberID);
+
+        [OperationContract]
+        USER_ GetUser(int UserID);
+
+        [OperationContract]
+        List<USER_> GetUsers(string UserType);
     }
 }
