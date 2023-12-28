@@ -33,18 +33,18 @@ namespace ResBarbers_Backend
     partial void InsertUSER_(USER_ instance);
     partial void UpdateUSER_(USER_ instance);
     partial void DeleteUSER_(USER_ instance);
-    partial void InsertAppointment(Appointment instance);
-    partial void UpdateAppointment(Appointment instance);
-    partial void DeleteAppointment(Appointment instance);
+    partial void InsertMenuItem(MenuItem instance);
+    partial void UpdateMenuItem(MenuItem instance);
+    partial void DeleteMenuItem(MenuItem instance);
     partial void InsertClientBarberHistory(ClientBarberHistory instance);
     partial void UpdateClientBarberHistory(ClientBarberHistory instance);
     partial void DeleteClientBarberHistory(ClientBarberHistory instance);
     partial void InsertReview(Review instance);
     partial void UpdateReview(Review instance);
     partial void DeleteReview(Review instance);
-    partial void InsertMenuItem(MenuItem instance);
-    partial void UpdateMenuItem(MenuItem instance);
-    partial void DeleteMenuItem(MenuItem instance);
+    partial void InsertAppointment(Appointment instance);
+    partial void UpdateAppointment(Appointment instance);
+    partial void DeleteAppointment(Appointment instance);
     #endregion
 		
 		public MainDataClassesDataContext() : 
@@ -85,11 +85,11 @@ namespace ResBarbers_Backend
 			}
 		}
 		
-		public System.Data.Linq.Table<Appointment> Appointments
+		public System.Data.Linq.Table<MenuItem> MenuItems
 		{
 			get
 			{
-				return this.GetTable<Appointment>();
+				return this.GetTable<MenuItem>();
 			}
 		}
 		
@@ -109,11 +109,11 @@ namespace ResBarbers_Backend
 			}
 		}
 		
-		public System.Data.Linq.Table<MenuItem> MenuItems
+		public System.Data.Linq.Table<Appointment> Appointments
 		{
 			get
 			{
-				return this.GetTable<MenuItem>();
+				return this.GetTable<Appointment>();
 			}
 		}
 	}
@@ -164,18 +164,6 @@ namespace ResBarbers_Backend
 		
 		private string _UserType;
 		
-		private EntitySet<Appointment> _Appointments;
-		
-		private EntitySet<Appointment> _Appointments1;
-		
-		private EntitySet<ClientBarberHistory> _ClientBarberHistories;
-		
-		private EntitySet<ClientBarberHistory> _ClientBarberHistories1;
-		
-		private EntitySet<Review> _Reviews;
-		
-		private EntitySet<Review> _Reviews1;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -224,12 +212,6 @@ namespace ResBarbers_Backend
 		
 		public USER_()
 		{
-			this._Appointments = new EntitySet<Appointment>(new Action<Appointment>(this.attach_Appointments), new Action<Appointment>(this.detach_Appointments));
-			this._Appointments1 = new EntitySet<Appointment>(new Action<Appointment>(this.attach_Appointments1), new Action<Appointment>(this.detach_Appointments1));
-			this._ClientBarberHistories = new EntitySet<ClientBarberHistory>(new Action<ClientBarberHistory>(this.attach_ClientBarberHistories), new Action<ClientBarberHistory>(this.detach_ClientBarberHistories));
-			this._ClientBarberHistories1 = new EntitySet<ClientBarberHistory>(new Action<ClientBarberHistory>(this.attach_ClientBarberHistories1), new Action<ClientBarberHistory>(this.detach_ClientBarberHistories1));
-			this._Reviews = new EntitySet<Review>(new Action<Review>(this.attach_Reviews), new Action<Review>(this.detach_Reviews));
-			this._Reviews1 = new EntitySet<Review>(new Action<Review>(this.attach_Reviews1), new Action<Review>(this.detach_Reviews1));
 			OnCreated();
 		}
 		
@@ -633,84 +615,6 @@ namespace ResBarbers_Backend
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__Appointment", Storage="_Appointments", ThisKey="UserID", OtherKey="BarberID")]
-		public EntitySet<Appointment> Appointments
-		{
-			get
-			{
-				return this._Appointments;
-			}
-			set
-			{
-				this._Appointments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__Appointment1", Storage="_Appointments1", ThisKey="UserID", OtherKey="ClientID")]
-		public EntitySet<Appointment> Appointments1
-		{
-			get
-			{
-				return this._Appointments1;
-			}
-			set
-			{
-				this._Appointments1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__ClientBarberHistory", Storage="_ClientBarberHistories", ThisKey="UserID", OtherKey="BarberID")]
-		public EntitySet<ClientBarberHistory> ClientBarberHistories
-		{
-			get
-			{
-				return this._ClientBarberHistories;
-			}
-			set
-			{
-				this._ClientBarberHistories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__ClientBarberHistory1", Storage="_ClientBarberHistories1", ThisKey="UserID", OtherKey="ClientID")]
-		public EntitySet<ClientBarberHistory> ClientBarberHistories1
-		{
-			get
-			{
-				return this._ClientBarberHistories1;
-			}
-			set
-			{
-				this._ClientBarberHistories1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__Review", Storage="_Reviews", ThisKey="UserID", OtherKey="BarberID")]
-		public EntitySet<Review> Reviews
-		{
-			get
-			{
-				return this._Reviews;
-			}
-			set
-			{
-				this._Reviews.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__Review1", Storage="_Reviews1", ThisKey="UserID", OtherKey="ClientID")]
-		public EntitySet<Review> Reviews1
-		{
-			get
-			{
-				return this._Reviews1;
-			}
-			set
-			{
-				this._Reviews1.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -730,203 +634,50 @@ namespace ResBarbers_Backend
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_Appointments(Appointment entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_ = this;
-		}
-		
-		private void detach_Appointments(Appointment entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_ = null;
-		}
-		
-		private void attach_Appointments1(Appointment entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_1 = this;
-		}
-		
-		private void detach_Appointments1(Appointment entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_1 = null;
-		}
-		
-		private void attach_ClientBarberHistories(ClientBarberHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_ = this;
-		}
-		
-		private void detach_ClientBarberHistories(ClientBarberHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_ = null;
-		}
-		
-		private void attach_ClientBarberHistories1(ClientBarberHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_1 = this;
-		}
-		
-		private void detach_ClientBarberHistories1(ClientBarberHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_1 = null;
-		}
-		
-		private void attach_Reviews(Review entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_ = this;
-		}
-		
-		private void detach_Reviews(Review entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_ = null;
-		}
-		
-		private void attach_Reviews1(Review entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_1 = this;
-		}
-		
-		private void detach_Reviews1(Review entity)
-		{
-			this.SendPropertyChanging();
-			entity.USER_1 = null;
-		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Appointment")]
-	public partial class Appointment : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MenuItem")]
+	public partial class MenuItem : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _AppointmentID;
-		
-		private int _ClientID;
+		private int _StyleID;
 		
 		private int _BarberID;
 		
-		private int _StyleID;
+		private string _StyleName;
 		
-		private System.DateTime _AppointmentDate;
+		private decimal _StylePrice;
 		
-		private System.TimeSpan _AppointmentTime;
+		private string _StyleDescription;
 		
-		private string _AppointmentStatus;
-		
-		private EntitySet<ClientBarberHistory> _ClientBarberHistories;
-		
-		private EntityRef<USER_> _USER_;
-		
-		private EntityRef<USER_> _USER_1;
+		private string _StyleImage;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnAppointmentIDChanging(int value);
-    partial void OnAppointmentIDChanged();
-    partial void OnClientIDChanging(int value);
-    partial void OnClientIDChanged();
-    partial void OnBarberIDChanging(int value);
-    partial void OnBarberIDChanged();
     partial void OnStyleIDChanging(int value);
     partial void OnStyleIDChanged();
-    partial void OnAppointmentDateChanging(System.DateTime value);
-    partial void OnAppointmentDateChanged();
-    partial void OnAppointmentTimeChanging(System.TimeSpan value);
-    partial void OnAppointmentTimeChanged();
-    partial void OnAppointmentStatusChanging(string value);
-    partial void OnAppointmentStatusChanged();
+    partial void OnBarberIDChanging(int value);
+    partial void OnBarberIDChanged();
+    partial void OnStyleNameChanging(string value);
+    partial void OnStyleNameChanged();
+    partial void OnStylePriceChanging(decimal value);
+    partial void OnStylePriceChanged();
+    partial void OnStyleDescriptionChanging(string value);
+    partial void OnStyleDescriptionChanged();
+    partial void OnStyleImageChanging(string value);
+    partial void OnStyleImageChanged();
     #endregion
 		
-		public Appointment()
+		public MenuItem()
 		{
-			this._ClientBarberHistories = new EntitySet<ClientBarberHistory>(new Action<ClientBarberHistory>(this.attach_ClientBarberHistories), new Action<ClientBarberHistory>(this.detach_ClientBarberHistories));
-			this._USER_ = default(EntityRef<USER_>);
-			this._USER_1 = default(EntityRef<USER_>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AppointmentID
-		{
-			get
-			{
-				return this._AppointmentID;
-			}
-			set
-			{
-				if ((this._AppointmentID != value))
-				{
-					this.OnAppointmentIDChanging(value);
-					this.SendPropertyChanging();
-					this._AppointmentID = value;
-					this.SendPropertyChanged("AppointmentID");
-					this.OnAppointmentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientID", DbType="Int NOT NULL")]
-		public int ClientID
-		{
-			get
-			{
-				return this._ClientID;
-			}
-			set
-			{
-				if ((this._ClientID != value))
-				{
-					if (this._USER_1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnClientIDChanging(value);
-					this.SendPropertyChanging();
-					this._ClientID = value;
-					this.SendPropertyChanged("ClientID");
-					this.OnClientIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarberID", DbType="Int NOT NULL")]
-		public int BarberID
-		{
-			get
-			{
-				return this._BarberID;
-			}
-			set
-			{
-				if ((this._BarberID != value))
-				{
-					if (this._USER_.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBarberIDChanging(value);
-					this.SendPropertyChanging();
-					this._BarberID = value;
-					this.SendPropertyChanged("BarberID");
-					this.OnBarberIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleID", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int StyleID
 		{
 			get
@@ -946,143 +697,102 @@ namespace ResBarbers_Backend
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentDate", DbType="Date NOT NULL")]
-		public System.DateTime AppointmentDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarberID", DbType="Int NOT NULL")]
+		public int BarberID
 		{
 			get
 			{
-				return this._AppointmentDate;
+				return this._BarberID;
 			}
 			set
 			{
-				if ((this._AppointmentDate != value))
+				if ((this._BarberID != value))
 				{
-					this.OnAppointmentDateChanging(value);
+					this.OnBarberIDChanging(value);
 					this.SendPropertyChanging();
-					this._AppointmentDate = value;
-					this.SendPropertyChanged("AppointmentDate");
-					this.OnAppointmentDateChanged();
+					this._BarberID = value;
+					this.SendPropertyChanged("BarberID");
+					this.OnBarberIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentTime", DbType="Time NOT NULL")]
-		public System.TimeSpan AppointmentTime
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleName", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string StyleName
 		{
 			get
 			{
-				return this._AppointmentTime;
+				return this._StyleName;
 			}
 			set
 			{
-				if ((this._AppointmentTime != value))
+				if ((this._StyleName != value))
 				{
-					this.OnAppointmentTimeChanging(value);
+					this.OnStyleNameChanging(value);
 					this.SendPropertyChanging();
-					this._AppointmentTime = value;
-					this.SendPropertyChanged("AppointmentTime");
-					this.OnAppointmentTimeChanged();
+					this._StyleName = value;
+					this.SendPropertyChanged("StyleName");
+					this.OnStyleNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentStatus", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string AppointmentStatus
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StylePrice", DbType="Money NOT NULL")]
+		public decimal StylePrice
 		{
 			get
 			{
-				return this._AppointmentStatus;
+				return this._StylePrice;
 			}
 			set
 			{
-				if ((this._AppointmentStatus != value))
+				if ((this._StylePrice != value))
 				{
-					this.OnAppointmentStatusChanging(value);
+					this.OnStylePriceChanging(value);
 					this.SendPropertyChanging();
-					this._AppointmentStatus = value;
-					this.SendPropertyChanged("AppointmentStatus");
-					this.OnAppointmentStatusChanged();
+					this._StylePrice = value;
+					this.SendPropertyChanged("StylePrice");
+					this.OnStylePriceChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_ClientBarberHistory", Storage="_ClientBarberHistories", ThisKey="AppointmentID", OtherKey="AppointmentID")]
-		public EntitySet<ClientBarberHistory> ClientBarberHistories
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleDescription", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string StyleDescription
 		{
 			get
 			{
-				return this._ClientBarberHistories;
+				return this._StyleDescription;
 			}
 			set
 			{
-				this._ClientBarberHistories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__Appointment", Storage="_USER_", ThisKey="BarberID", OtherKey="UserID", IsForeignKey=true)]
-		public USER_ USER_
-		{
-			get
-			{
-				return this._USER_.Entity;
-			}
-			set
-			{
-				USER_ previousValue = this._USER_.Entity;
-				if (((previousValue != value) 
-							|| (this._USER_.HasLoadedOrAssignedValue == false)))
+				if ((this._StyleDescription != value))
 				{
+					this.OnStyleDescriptionChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._USER_.Entity = null;
-						previousValue.Appointments.Remove(this);
-					}
-					this._USER_.Entity = value;
-					if ((value != null))
-					{
-						value.Appointments.Add(this);
-						this._BarberID = value.UserID;
-					}
-					else
-					{
-						this._BarberID = default(int);
-					}
-					this.SendPropertyChanged("USER_");
+					this._StyleDescription = value;
+					this.SendPropertyChanged("StyleDescription");
+					this.OnStyleDescriptionChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__Appointment1", Storage="_USER_1", ThisKey="ClientID", OtherKey="UserID", IsForeignKey=true)]
-		public USER_ USER_1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleImage", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string StyleImage
 		{
 			get
 			{
-				return this._USER_1.Entity;
+				return this._StyleImage;
 			}
 			set
 			{
-				USER_ previousValue = this._USER_1.Entity;
-				if (((previousValue != value) 
-							|| (this._USER_1.HasLoadedOrAssignedValue == false)))
+				if ((this._StyleImage != value))
 				{
+					this.OnStyleImageChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._USER_1.Entity = null;
-						previousValue.Appointments1.Remove(this);
-					}
-					this._USER_1.Entity = value;
-					if ((value != null))
-					{
-						value.Appointments1.Add(this);
-						this._ClientID = value.UserID;
-					}
-					else
-					{
-						this._ClientID = default(int);
-					}
-					this.SendPropertyChanged("USER_1");
+					this._StyleImage = value;
+					this.SendPropertyChanged("StyleImage");
+					this.OnStyleImageChanged();
 				}
 			}
 		}
@@ -1105,18 +815,6 @@ namespace ResBarbers_Backend
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_ClientBarberHistories(ClientBarberHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.Appointment = this;
-		}
-		
-		private void detach_ClientBarberHistories(ClientBarberHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.Appointment = null;
 		}
 	}
 	
@@ -1162,14 +860,6 @@ namespace ResBarbers_Backend
 		
 		private System.Nullable<System.TimeSpan> _PostponeTime;
 		
-		private EntityRef<Appointment> _Appointment;
-		
-		private EntityRef<USER_> _USER_;
-		
-		private EntityRef<USER_> _USER_1;
-		
-		private EntityRef<Review> _Review;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1214,10 +904,6 @@ namespace ResBarbers_Backend
 		
 		public ClientBarberHistory()
 		{
-			this._Appointment = default(EntityRef<Appointment>);
-			this._USER_ = default(EntityRef<USER_>);
-			this._USER_1 = default(EntityRef<USER_>);
-			this._Review = default(EntityRef<Review>);
 			OnCreated();
 		}
 		
@@ -1252,10 +938,6 @@ namespace ResBarbers_Backend
 			{
 				if ((this._ClientID != value))
 				{
-					if (this._USER_1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnClientIDChanging(value);
 					this.SendPropertyChanging();
 					this._ClientID = value;
@@ -1276,10 +958,6 @@ namespace ResBarbers_Backend
 			{
 				if ((this._BarberID != value))
 				{
-					if (this._USER_.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnBarberIDChanging(value);
 					this.SendPropertyChanging();
 					this._BarberID = value;
@@ -1300,10 +978,6 @@ namespace ResBarbers_Backend
 			{
 				if ((this._AppointmentID != value))
 				{
-					if (this._Appointment.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnAppointmentIDChanging(value);
 					this.SendPropertyChanging();
 					this._AppointmentID = value;
@@ -1324,10 +998,6 @@ namespace ResBarbers_Backend
 			{
 				if ((this._RevID != value))
 				{
-					if (this._Review.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnRevIDChanging(value);
 					this.SendPropertyChanging();
 					this._RevID = value;
@@ -1597,142 +1267,6 @@ namespace ResBarbers_Backend
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_ClientBarberHistory", Storage="_Appointment", ThisKey="AppointmentID", OtherKey="AppointmentID", IsForeignKey=true)]
-		public Appointment Appointment
-		{
-			get
-			{
-				return this._Appointment.Entity;
-			}
-			set
-			{
-				Appointment previousValue = this._Appointment.Entity;
-				if (((previousValue != value) 
-							|| (this._Appointment.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Appointment.Entity = null;
-						previousValue.ClientBarberHistories.Remove(this);
-					}
-					this._Appointment.Entity = value;
-					if ((value != null))
-					{
-						value.ClientBarberHistories.Add(this);
-						this._AppointmentID = value.AppointmentID;
-					}
-					else
-					{
-						this._AppointmentID = default(int);
-					}
-					this.SendPropertyChanged("Appointment");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__ClientBarberHistory", Storage="_USER_", ThisKey="BarberID", OtherKey="UserID", IsForeignKey=true)]
-		public USER_ USER_
-		{
-			get
-			{
-				return this._USER_.Entity;
-			}
-			set
-			{
-				USER_ previousValue = this._USER_.Entity;
-				if (((previousValue != value) 
-							|| (this._USER_.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._USER_.Entity = null;
-						previousValue.ClientBarberHistories.Remove(this);
-					}
-					this._USER_.Entity = value;
-					if ((value != null))
-					{
-						value.ClientBarberHistories.Add(this);
-						this._BarberID = value.UserID;
-					}
-					else
-					{
-						this._BarberID = default(int);
-					}
-					this.SendPropertyChanged("USER_");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__ClientBarberHistory1", Storage="_USER_1", ThisKey="ClientID", OtherKey="UserID", IsForeignKey=true)]
-		public USER_ USER_1
-		{
-			get
-			{
-				return this._USER_1.Entity;
-			}
-			set
-			{
-				USER_ previousValue = this._USER_1.Entity;
-				if (((previousValue != value) 
-							|| (this._USER_1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._USER_1.Entity = null;
-						previousValue.ClientBarberHistories1.Remove(this);
-					}
-					this._USER_1.Entity = value;
-					if ((value != null))
-					{
-						value.ClientBarberHistories1.Add(this);
-						this._ClientID = value.UserID;
-					}
-					else
-					{
-						this._ClientID = default(int);
-					}
-					this.SendPropertyChanged("USER_1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Review_ClientBarberHistory", Storage="_Review", ThisKey="RevID", OtherKey="RevID", IsForeignKey=true)]
-		public Review Review
-		{
-			get
-			{
-				return this._Review.Entity;
-			}
-			set
-			{
-				Review previousValue = this._Review.Entity;
-				if (((previousValue != value) 
-							|| (this._Review.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Review.Entity = null;
-						previousValue.ClientBarberHistories.Remove(this);
-					}
-					this._Review.Entity = value;
-					if ((value != null))
-					{
-						value.ClientBarberHistories.Add(this);
-						this._RevID = value.RevID;
-					}
-					else
-					{
-						this._RevID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Review");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1772,12 +1306,6 @@ namespace ResBarbers_Backend
 		
 		private string _Reviewer;
 		
-		private EntitySet<ClientBarberHistory> _ClientBarberHistories;
-		
-		private EntityRef<USER_> _USER_;
-		
-		private EntityRef<USER_> _USER_1;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1798,9 +1326,6 @@ namespace ResBarbers_Backend
 		
 		public Review()
 		{
-			this._ClientBarberHistories = new EntitySet<ClientBarberHistory>(new Action<ClientBarberHistory>(this.attach_ClientBarberHistories), new Action<ClientBarberHistory>(this.detach_ClientBarberHistories));
-			this._USER_ = default(EntityRef<USER_>);
-			this._USER_1 = default(EntityRef<USER_>);
 			OnCreated();
 		}
 		
@@ -1835,10 +1360,6 @@ namespace ResBarbers_Backend
 			{
 				if ((this._ClientID != value))
 				{
-					if (this._USER_1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnClientIDChanging(value);
 					this.SendPropertyChanging();
 					this._ClientID = value;
@@ -1859,10 +1380,6 @@ namespace ResBarbers_Backend
 			{
 				if ((this._BarberID != value))
 				{
-					if (this._USER_.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnBarberIDChanging(value);
 					this.SendPropertyChanging();
 					this._BarberID = value;
@@ -1932,87 +1449,6 @@ namespace ResBarbers_Backend
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Review_ClientBarberHistory", Storage="_ClientBarberHistories", ThisKey="RevID", OtherKey="RevID")]
-		public EntitySet<ClientBarberHistory> ClientBarberHistories
-		{
-			get
-			{
-				return this._ClientBarberHistories;
-			}
-			set
-			{
-				this._ClientBarberHistories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__Review", Storage="_USER_", ThisKey="BarberID", OtherKey="UserID", IsForeignKey=true)]
-		public USER_ USER_
-		{
-			get
-			{
-				return this._USER_.Entity;
-			}
-			set
-			{
-				USER_ previousValue = this._USER_.Entity;
-				if (((previousValue != value) 
-							|| (this._USER_.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._USER_.Entity = null;
-						previousValue.Reviews.Remove(this);
-					}
-					this._USER_.Entity = value;
-					if ((value != null))
-					{
-						value.Reviews.Add(this);
-						this._BarberID = value.UserID;
-					}
-					else
-					{
-						this._BarberID = default(int);
-					}
-					this.SendPropertyChanged("USER_");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER__Review1", Storage="_USER_1", ThisKey="ClientID", OtherKey="UserID", IsForeignKey=true)]
-		public USER_ USER_1
-		{
-			get
-			{
-				return this._USER_1.Entity;
-			}
-			set
-			{
-				USER_ previousValue = this._USER_1.Entity;
-				if (((previousValue != value) 
-							|| (this._USER_1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._USER_1.Entity = null;
-						previousValue.Reviews1.Remove(this);
-					}
-					this._USER_1.Entity = value;
-					if ((value != null))
-					{
-						value.Reviews1.Add(this);
-						this._ClientID = value.UserID;
-					}
-					else
-					{
-						this._ClientID = default(int);
-					}
-					this.SendPropertyChanged("USER_1");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2032,77 +1468,89 @@ namespace ResBarbers_Backend
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_ClientBarberHistories(ClientBarberHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.Review = this;
-		}
-		
-		private void detach_ClientBarberHistories(ClientBarberHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.Review = null;
-		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MenuItem")]
-	public partial class MenuItem : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Appointment")]
+	public partial class Appointment : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _StyleID;
+		private int _AppointmentID;
+		
+		private int _ClientID;
 		
 		private int _BarberID;
 		
-		private string _StyleName;
+		private int _StyleID;
 		
-		private decimal _StylePrice;
+		private System.DateTime _AppointmentDate;
 		
-		private string _StyleDescription;
+		private System.TimeSpan _AppointmentTime;
 		
-		private string _StyleImage;
+		private string _AppointmentStatus;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnStyleIDChanging(int value);
-    partial void OnStyleIDChanged();
+    partial void OnAppointmentIDChanging(int value);
+    partial void OnAppointmentIDChanged();
+    partial void OnClientIDChanging(int value);
+    partial void OnClientIDChanged();
     partial void OnBarberIDChanging(int value);
     partial void OnBarberIDChanged();
-    partial void OnStyleNameChanging(string value);
-    partial void OnStyleNameChanged();
-    partial void OnStylePriceChanging(decimal value);
-    partial void OnStylePriceChanged();
-    partial void OnStyleDescriptionChanging(string value);
-    partial void OnStyleDescriptionChanged();
-    partial void OnStyleImageChanging(string value);
-    partial void OnStyleImageChanged();
+    partial void OnStyleIDChanging(int value);
+    partial void OnStyleIDChanged();
+    partial void OnAppointmentDateChanging(System.DateTime value);
+    partial void OnAppointmentDateChanged();
+    partial void OnAppointmentTimeChanging(System.TimeSpan value);
+    partial void OnAppointmentTimeChanged();
+    partial void OnAppointmentStatusChanging(string value);
+    partial void OnAppointmentStatusChanged();
     #endregion
 		
-		public MenuItem()
+		public Appointment()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int StyleID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int AppointmentID
 		{
 			get
 			{
-				return this._StyleID;
+				return this._AppointmentID;
 			}
 			set
 			{
-				if ((this._StyleID != value))
+				if ((this._AppointmentID != value))
 				{
-					this.OnStyleIDChanging(value);
+					this.OnAppointmentIDChanging(value);
 					this.SendPropertyChanging();
-					this._StyleID = value;
-					this.SendPropertyChanged("StyleID");
-					this.OnStyleIDChanged();
+					this._AppointmentID = value;
+					this.SendPropertyChanged("AppointmentID");
+					this.OnAppointmentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientID", DbType="Int NOT NULL")]
+		public int ClientID
+		{
+			get
+			{
+				return this._ClientID;
+			}
+			set
+			{
+				if ((this._ClientID != value))
+				{
+					this.OnClientIDChanging(value);
+					this.SendPropertyChanging();
+					this._ClientID = value;
+					this.SendPropertyChanged("ClientID");
+					this.OnClientIDChanged();
 				}
 			}
 		}
@@ -2127,82 +1575,82 @@ namespace ResBarbers_Backend
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleName", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string StyleName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleID", DbType="Int NOT NULL")]
+		public int StyleID
 		{
 			get
 			{
-				return this._StyleName;
+				return this._StyleID;
 			}
 			set
 			{
-				if ((this._StyleName != value))
+				if ((this._StyleID != value))
 				{
-					this.OnStyleNameChanging(value);
+					this.OnStyleIDChanging(value);
 					this.SendPropertyChanging();
-					this._StyleName = value;
-					this.SendPropertyChanged("StyleName");
-					this.OnStyleNameChanged();
+					this._StyleID = value;
+					this.SendPropertyChanged("StyleID");
+					this.OnStyleIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StylePrice", DbType="Money NOT NULL")]
-		public decimal StylePrice
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentDate", DbType="Date NOT NULL")]
+		public System.DateTime AppointmentDate
 		{
 			get
 			{
-				return this._StylePrice;
+				return this._AppointmentDate;
 			}
 			set
 			{
-				if ((this._StylePrice != value))
+				if ((this._AppointmentDate != value))
 				{
-					this.OnStylePriceChanging(value);
+					this.OnAppointmentDateChanging(value);
 					this.SendPropertyChanging();
-					this._StylePrice = value;
-					this.SendPropertyChanged("StylePrice");
-					this.OnStylePriceChanged();
+					this._AppointmentDate = value;
+					this.SendPropertyChanged("AppointmentDate");
+					this.OnAppointmentDateChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleDescription", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string StyleDescription
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentTime", DbType="Time NOT NULL")]
+		public System.TimeSpan AppointmentTime
 		{
 			get
 			{
-				return this._StyleDescription;
+				return this._AppointmentTime;
 			}
 			set
 			{
-				if ((this._StyleDescription != value))
+				if ((this._AppointmentTime != value))
 				{
-					this.OnStyleDescriptionChanging(value);
+					this.OnAppointmentTimeChanging(value);
 					this.SendPropertyChanging();
-					this._StyleDescription = value;
-					this.SendPropertyChanged("StyleDescription");
-					this.OnStyleDescriptionChanged();
+					this._AppointmentTime = value;
+					this.SendPropertyChanged("AppointmentTime");
+					this.OnAppointmentTimeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleImage", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string StyleImage
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentStatus", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string AppointmentStatus
 		{
 			get
 			{
-				return this._StyleImage;
+				return this._AppointmentStatus;
 			}
 			set
 			{
-				if ((this._StyleImage != value))
+				if ((this._AppointmentStatus != value))
 				{
-					this.OnStyleImageChanging(value);
+					this.OnAppointmentStatusChanging(value);
 					this.SendPropertyChanging();
-					this._StyleImage = value;
-					this.SendPropertyChanged("StyleImage");
-					this.OnStyleImageChanged();
+					this._AppointmentStatus = value;
+					this.SendPropertyChanged("AppointmentStatus");
+					this.OnAppointmentStatusChanged();
 				}
 			}
 		}

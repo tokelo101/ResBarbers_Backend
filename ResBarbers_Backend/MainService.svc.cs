@@ -262,5 +262,20 @@ namespace ResBarbers_Backend
                 return barberhairstyles;
             }
         }
+
+        public bool MakeAppointment(Appointment NewAppointment)
+        {
+            db.Appointments.InsertOnSubmit(NewAppointment);
+
+            if (NewAppointment != null)
+            {
+                db.SubmitChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

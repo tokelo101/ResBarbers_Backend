@@ -44,5 +44,8 @@ namespace ResBarbers_Backend
 
         [OperationContract]
         List<USER_> GetUsers(string UserType);
+
+        [OperationContract]
+        bool MakeAppointment(Appointment NewAppointment);
     }
 }

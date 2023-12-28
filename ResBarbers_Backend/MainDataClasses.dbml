@@ -22,26 +22,16 @@
       <Column Name="About" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="PassPhrase" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="UserType" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Association Name="USER__Appointment" Member="Appointments" ThisKey="UserID" OtherKey="BarberID" Type="Appointment" />
-      <Association Name="USER__Appointment1" Member="Appointments1" ThisKey="UserID" OtherKey="ClientID" Type="Appointment" />
-      <Association Name="USER__ClientBarberHistory" Member="ClientBarberHistories" ThisKey="UserID" OtherKey="BarberID" Type="ClientBarberHistory" />
-      <Association Name="USER__ClientBarberHistory1" Member="ClientBarberHistories1" ThisKey="UserID" OtherKey="ClientID" Type="ClientBarberHistory" />
-      <Association Name="USER__Review" Member="Reviews" ThisKey="UserID" OtherKey="BarberID" Type="Review" />
-      <Association Name="USER__Review1" Member="Reviews1" ThisKey="UserID" OtherKey="ClientID" Type="Review" />
     </Type>
   </Table>
-  <Table Name="dbo.Appointment" Member="Appointments">
-    <Type Name="Appointment">
-      <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.MenuItem" Member="MenuItems">
+    <Type Name="MenuItem">
+      <Column Name="StyleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="BarberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StyleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="AppointmentDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="AppointmentTime" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
-      <Column Name="AppointmentStatus" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Association Name="Appointment_ClientBarberHistory" Member="ClientBarberHistories" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="ClientBarberHistory" />
-      <Association Name="USER__Appointment" Member="USER_" ThisKey="BarberID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
-      <Association Name="USER__Appointment1" Member="USER_1" ThisKey="ClientID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
+      <Column Name="StyleName" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="StylePrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="StyleDescription" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="StyleImage" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.ClientBarberHistory" Member="ClientBarberHistories">
@@ -64,10 +54,6 @@
       <Column Name="CancelTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
       <Column Name="PostponeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="PostponeTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
-      <Association Name="Appointment_ClientBarberHistory" Member="Appointment" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="Appointment" IsForeignKey="true" />
-      <Association Name="USER__ClientBarberHistory" Member="USER_" ThisKey="BarberID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
-      <Association Name="USER__ClientBarberHistory1" Member="USER_1" ThisKey="ClientID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
-      <Association Name="Review_ClientBarberHistory" Member="Review" ThisKey="RevID" OtherKey="RevID" Type="Review" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Review" Member="Reviews">
@@ -78,19 +64,17 @@
       <Column Name="Rating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Review" Member="Review1" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="Reviewer" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Association Name="Review_ClientBarberHistory" Member="ClientBarberHistories" ThisKey="RevID" OtherKey="RevID" Type="ClientBarberHistory" />
-      <Association Name="USER__Review" Member="USER_" ThisKey="BarberID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
-      <Association Name="USER__Review1" Member="USER_1" ThisKey="ClientID" OtherKey="UserID" Type="USER_" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.MenuItem" Member="MenuItems">
-    <Type Name="MenuItem">
-      <Column Name="StyleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+  <Table Name="dbo.Appointment" Member="Appointments">
+    <Type Name="Appointment">
+      <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="BarberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StyleName" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="StylePrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="StyleDescription" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="StyleImage" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="StyleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AppointmentDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="AppointmentTime" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="AppointmentStatus" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>
