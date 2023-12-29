@@ -278,9 +278,9 @@ namespace ResBarbers_Backend
             }
         }
 
-        public Appointment GetAppointment(int BarberID, string Status)
+        public Appointment GetAppointment(int AppointmentID)
         {
-            var appointment = (from a in db.Appointments where (a.BarberID.Equals(BarberID) && a.AppointmentStatus.Equals(Status)) select a).FirstOrDefault();
+            var appointment = (from a in db.Appointments where (a.AppointmentID.Equals(AppointmentID)) select a).FirstOrDefault();
             
             if (appointment != null)
             {
@@ -302,9 +302,9 @@ namespace ResBarbers_Backend
             }
         }
 
-        public List<Appointment> GetAppointments(int BarberID, string Status)
+        public List<Appointment> GetAppointments(int BarberID, string AppointmentStatus)
         {
-            IEnumerable<dynamic> appointments = (from a in db.Appointments where (a.BarberID.Equals(BarberID) && a.AppointmentStatus.Equals(Status)) select a);
+            IEnumerable<dynamic> appointments = (from a in db.Appointments where (a.BarberID.Equals(BarberID) && a.AppointmentStatus.Equals(AppointmentStatus)) select a);
             
             if (!appointments.Any())
             {
@@ -328,6 +328,23 @@ namespace ResBarbers_Backend
                     retrievedAppointments.Add(newAppointment);
                 }
                 return retrievedAppointments;
+            }
+        }
+
+        public bool UpdateAppointment(int AppointmentID, string AppointmentStatus)
+        {
+            var appointment = (from a in db.Appointments where a.AppointmentID.Equals(AppointmentID) select a).FirstOrDefault();
+
+            if (appointment != null)
+            {
+                appointment.AppointmentStatus = AppointmentStatus;
+
+                db.SubmitChanges();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
