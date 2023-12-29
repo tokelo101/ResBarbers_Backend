@@ -47,5 +47,11 @@ namespace ResBarbers_Backend
 
         [OperationContract]
         bool MakeAppointment(Appointment NewAppointment);
+
+        [OperationContract]
+        Appointment GetAppointment(int BarberID, string Status);
+
+        [OperationContract]
+        List<Appointment> GetAppointments(int BarberID, string Status);
     }
 }

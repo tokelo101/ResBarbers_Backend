@@ -207,7 +207,7 @@ namespace ResBarbers_Backend
 
         public List<USER_> GetUsers(string UserType)
         {
-            IEnumerable<dynamic> users = (from u in db.USER_s where u.UserType.Equals(UserType) select u).DefaultIfEmpty();
+            IEnumerable<dynamic> users = (from u in db.USER_s where u.UserType.Equals(UserType) select u);
 
             if (users.Any())
             {
@@ -275,6 +275,59 @@ namespace ResBarbers_Backend
             else
             {
                 return false;
+            }
+        }
+
+        public Appointment GetAppointment(int BarberID, string Status)
+        {
+            var appointment = (from a in db.Appointments where (a.BarberID.Equals(BarberID) && a.AppointmentStatus.Equals(Status)) select a).FirstOrDefault();
+            
+            if (appointment != null)
+            {
+                Appointment newAppointment = new Appointment
+                {
+                    AppointmentID = appointment.AppointmentID,
+                    ClientID = appointment.ClientID,
+                    BarberID = appointment.BarberID,
+                    StyleID = appointment.StyleID,
+                    AppointmentDate = appointment.AppointmentDate,
+                    AppointmentTime = appointment.AppointmentTime,
+                    AppointmentStatus = appointment.AppointmentStatus
+                };
+                return newAppointment;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<Appointment> GetAppointments(int BarberID, string Status)
+        {
+            IEnumerable<dynamic> appointments = (from a in db.Appointments where (a.BarberID.Equals(BarberID) && a.AppointmentStatus.Equals(Status)) select a);
+            
+            if (!appointments.Any())
+            {
+                return null;
+            }
+            else
+            {
+                List<Appointment> retrievedAppointments = new List<Appointment>();
+                foreach (Appointment a in appointments)
+                {
+                    var newAppointment = new Appointment
+                    {
+                        AppointmentID = a.AppointmentID,
+                        ClientID = a.ClientID,
+                        BarberID = a.BarberID,
+                        StyleID = a.StyleID,
+                        AppointmentDate = a.AppointmentDate,
+                        AppointmentTime = a.AppointmentTime,
+                        AppointmentStatus = a.AppointmentStatus
+                    };
+                    retrievedAppointments.Add(newAppointment);
+                }
+                return retrievedAppointments;
             }
         }
     }
